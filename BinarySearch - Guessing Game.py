@@ -13,6 +13,7 @@ This game is a demonstration of binary search.
 Binary search find's an element in a sorted list by continually halving
 the search space until the element is found.
 """
+import math
 
 def start_game():
     '''(None) -> integer
@@ -22,3 +23,14 @@ def start_game():
     the computer will need and the game will begin.
     '''
     pass
+
+def compute_guesses(n):
+    '''(integer) -> integer
+    
+    Given a maximum value for the range starting from 1, this will
+    return the maximum number of guesses the computer needs.  The
+    formula is max_guesses = log base 2 of n.
+    '''
+    guesses = math.log(n, 2)
+    return int(math.ceil(guesses))
+    
