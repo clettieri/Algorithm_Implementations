@@ -17,6 +17,7 @@ import math
 
 #Global Variables
 MAX_RANGE = None
+GUESSES_NEEDED = None
 
 def start_game():
     '''(None) -> None
@@ -42,11 +43,14 @@ def start_game():
             print "That was not a valid number, please try again."
             continue
         else:
-            guesses_needed = compute_total_guesses(MAX_RANGE)
-            print "Very well, I will need " + str(guesses_needed) + " guesses."
+            GUESSES_NEEDED = compute_total_guesses(MAX_RANGE)
+            print "Very well, I will need " + str(GUESSES_NEEDED) + " guesses."
             break
     print ""
     print "Now pick a number between 1 and " + str(MAX_RANGE) +  ", write it down!"
+    print "Press Enter when you have decided upon a number"
+    print ""
+    print raw_input()
     guess()
     
 def compute_total_guesses(n):
@@ -69,6 +73,46 @@ def guess():
     This function will utlize binary search to continually halve the search space
     from 1 to MAX_RANGE until the user's number is found.
     '''
-    pass
+    current_max = MAX_RANGE
+    current_min = 1
+    guess_count = 1
+    while True:
+        #Make guess
+    
+        # **** BINARY SEARCH **** 
+        current_range_difference = current_max - current_min
+        current_guess = (current_range_difference / 2) + current_min 
+        # ***********************
+        
+        #Get Input
+        print ""
+        print "My guess #"+str(guess_count)+" is: " + str(current_guess)
+        print "Is your number higher(H), lower(L), or was I correct(C)?"
+        print ""
+        #Input Loop
+        while True:
+            user_input = raw_input(">")
+            if user_input[0].upper() not in ["H", "L", "C"]:
+                print "Invalid input, please type H, L, or C."
+            else:
+                #Have valid response
+                guess_count += 1
+                break
+        #Analyze guess
+        user_choice = user_input[0].upper()
+        if user_choice == "H":
+            #User number is higher
+            current_min = current_guess
+        elif user_choice == "L":
+            #User number is lower
+            current_max = current_guess
+        elif user_choice == "C":
+            print "I told you I could do it!"
+            print "Exiting.."
+            break
+        elif guess_count > GUESSES_NEEDED:
+            print "You must be cheating, or did you forget your number?"
+            print "Exiting.."
+            break
     
 start_game()
