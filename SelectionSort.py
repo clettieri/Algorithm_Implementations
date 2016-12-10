@@ -15,7 +15,7 @@ def swap_values(l, first_index, second_index):
     Will take the first_index and swap it with the second_index.
     This function modifies the original list.
     '''
-    pass
+    l[first_index], l[second_index] = l[second_index], l[first_index]
 
 def find_minimum_index(l, start_index):
     '''(list, int) -> int
@@ -37,11 +37,20 @@ def selection_sort(l):
     Takes a list, will use selection sort to return
     a sorted list.
     '''
-    start_index = 0
-
-test_list = [17, 8, 1, 35, 0, 4, 6, 21, 22, 3, 0]
-print selection_sort(test_list)
-
+    #Loop through each element of list
+    for i in range(len(l)):
+        #Find min_index starting from ith element
+        min_index = find_minimum_index(l, i)
+        #Swap the new minimum into place
+        swap_values(l, min_index, i)
+    return l
+    
+#Test find_minimum_index function
 a = [0, 0, 5, 1, 6, 7]
 assert find_minimum_index(a, 2) == 3
 assert find_minimum_index(a, 1) == 1
+
+#Run Selection sort
+test_list = [17, 8, 1, 35, 0, 4, 6, 21, 22, 3, 0]
+print selection_sort(test_list)
+
