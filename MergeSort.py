@@ -78,7 +78,7 @@ def merge(first_half, second_half):
             
 
     
-a = [3,7,1,4,5,8,0,9,2,6]
+a = [3,7,1,4,5,8,0,9,2,0]
 print merge_sort(a)
 
     
