@@ -28,5 +28,8 @@ def insertion_sort(l):
             #While still elements to check and the element to left is
             #greater than unsorted element, swap
             l[j-1], l[j] = l[j], l[j-1] #Swap array elements
+            j -= 1
     return l
     
+a = [3, 1, 2, 0, 4]
+print insertion_sort(a)
