@@ -1,7 +1,7 @@
 """
 MergeSort
 
-Given an array, mergesort will recursively divide that array
+Given an array, merge_sort will recursively divide that array
 until a subarray is length 0 or 1.  In this base case (length 0 or 1),
 the subarray is said to be sorted.  Once the array is split up to the base case,
 the merge function is called on each pairing of subarrays.  The merge
