@@ -1,0 +1,25 @@
+"""
+Various Examples of using Recursion.
+
+Base Case - this is what causes the recursion to stop and actually return a value.
+Recursive Case - this is when we call the function on itself.
+"""
+
+def factorial(n):
+    '''(int) -> int
+    
+    Will recurisvely computed the factorial of n.
+    5! = 5x4x3x2x1
+    n! = n * (n-1)!
+    '''
+    #Base Case
+    if n == 1 or n == 0:
+        return 1
+        
+    #Recursive Case
+    return n * factorial(n-1)
+    
+assert factorial(0) == 1
+assert factorial(4) == 24
+assert factorial(5) == 120
+print "Success"
