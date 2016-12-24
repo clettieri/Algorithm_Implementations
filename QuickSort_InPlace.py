@@ -10,7 +10,8 @@ pivot are to the left of pivot in the array, and all elements who's value is
 greater than pivot element is to the right of the pivot in the array
 -Recursively sort the left and right sub-arrays (exlude the pivot element)
 -Recursive base case is len(subarray) < 2, array of length 1 or 0 is sorted
--Combine subarrays
+-Combine subarrays - nothing to return/ combine since the elements are being
+swapped around the pivot element in the current array, nothing to be returned.
 
 """
 
@@ -68,7 +69,7 @@ def quicksort(ls, start=0, end=None):
     #The sub arrays unsorted around the pivot
     quicksort(ls, start, i-1)
     quicksort(ls, i+1, end)
-    
+    #Don't need to return anything since elements are being swapped in place
 
     
 print "QuickSort List:"
