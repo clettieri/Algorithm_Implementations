@@ -50,16 +50,24 @@ def quicksort(ls, start=0, end=None):
     
     Will run quicksort algorithm to sort a given list. Sorts the list in place.
     '''
-    #Check Recursive Base Case
-    if len(ls) < 2:
-        return
-    
-    #Choose Pivot Element
+    #Set end index if None
     if end is None:
         end = len(ls) - 1
+        
+    #Check Recursive Base Case
+    if end - start < 1:
+        return
+        
+    #Choose Pivot Element
     pivot_index = random.randint(start, end)
     
-    #Partition the array - sort into left/right arrays
+    #Partition the array - sort the array around the pivot element
+    i = partition(ls, start, end, pivot_index)
+    
+    #Recursively call quicksort() on left and right arrays 
+    #The sub arrays unsorted around the pivot
+    quicksort(ls, start, i-1)
+    quicksort(ls, i+1, end)
     
 
     
