@@ -35,7 +35,7 @@ nodes it is connected to.
 
 adj_list = [
             [1, 2],
-            [0, 4, 5],
+            [0, 5],
             [0, 3, 4],
             [2, 6],
             [1, 2],
@@ -43,42 +43,20 @@ adj_list = [
             [3, 5]
             ]
             
-#def run_bfs(adj_list, start):
-#    '''(list, int) -> list of dictionaries
-#    
-#    Will create a map essentially of our tree.  This function returns a list
-#    of {distance: x, predecessor: x} for each node it searches through.  The
-#    list index is the node index in the tree.
-#    '''
-#    queue = [start] #Enqueue the starting point
-#    visited = [start] #Track the nodes already been to
-#    tree_info = []
-#    #Append source node
-#    tree_info.append({'source': 'null', 'distance': 0})
-#    
-#    while queue:
-#        current_node = queue.pop(0) #First In First Out
-#        current_node_info = []
-#        for adj_node in adj_list[current_node]:
-#            if adj_node not in visited:
-#                queue.append(adj_node)
-#                print tree_info
-#                current_distance = tree_info[current_node]['distance']
-#                current_distance += 1
-#                current_node_info.append({'source': current_node,
-#                                  'distance': current_distance})
-#        tree_info.append(current_node_info)
-#    return tree_info
-#            
-            
 def run_bfs(adj_list, start):
+    '''(list, int) -> list of dictionaries
+    
+    Will search through the given graph structure (adjacency list) and build
+    a 'map' for that tree.  Returning the map as a dictionary.
+    '''
     tree_info = []
     #Intialize all nodes
     for node in adj_list:
-        tree_info.append({'distance' : None, 'source' : None})
+        tree_info.append({'node': None, 'distance' : None, 'source' : None})
     #Create Queue
     queue = []
     #Start from Source
+    tree_info[start]['node'] = 'source'
     tree_info[start]['distance'] = 0
     queue.append(start)
     
@@ -87,10 +65,12 @@ def run_bfs(adj_list, start):
         current_node = queue.pop(0) #First in, First out
         for adj_node in adj_list[current_node]:
             if tree_info[adj_node]['distance'] is None:
+                tree_info[adj_node]['node'] = adj_node
                 tree_info[adj_node]['distance'] = tree_info[current_node]['distance'] + 1
                 tree_info[adj_node]['source'] = current_node
                 queue.append(adj_node)
     return tree_info
-        
+
     
+
 print run_bfs(adj_list, 0)
